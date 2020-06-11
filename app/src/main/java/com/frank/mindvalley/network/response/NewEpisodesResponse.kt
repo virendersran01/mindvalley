@@ -7,5 +7,5 @@ data class NewEpisodesResponseData(
 )
 
 data class NewEpisodesResponse(
-    @Json(name = "media") val courses: List<CourseNetwork>
+    @Json(name = "media") val courses: List<CourseNetwork>?
 )

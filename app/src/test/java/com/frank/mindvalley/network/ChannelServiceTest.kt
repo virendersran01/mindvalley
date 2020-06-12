@@ -9,15 +9,17 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okio.Okio
 import org.hamcrest.core.IsEqual
-import org.junit.*
+import org.hamcrest.core.IsNull.notNullValue
+import org.hamcrest.core.IsNull.nullValue
+import org.junit.After
+import org.junit.Assert.assertThat
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import org.junit.After
-import org.junit.Assert.assertThat
-import org.hamcrest.core.IsNull.notNullValue
-import org.hamcrest.core.IsNull.nullValue
 
 
 @RunWith(JUnit4::class)

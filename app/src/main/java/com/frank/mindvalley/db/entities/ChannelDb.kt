@@ -3,16 +3,7 @@ package com.frank.mindvalley.db.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.frank.mindvalley.models.CourseModel
 
-//val title: String?,
-//val series: List<CourseModel>? = null,
-//val mediaCount: Int = 0,
-//val courses: List<CourseModel>? = null,
-//val iconAssetUrl: String? = null,
-//val coverAssetUrl: String? = null,
-//val slug: String? = null,
-//val id: String? = null
 
 @Entity(tableName = "chanel")
 class ChannelDb(

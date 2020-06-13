@@ -33,6 +33,7 @@ ext {
     arch_testing_version = '2.1.0'
     mockwebserver = "3.8.1"
     room_version = '2.2.5'
+    mockito_android = '3.3.3'
 }
 
 task clean(type: Delete) {

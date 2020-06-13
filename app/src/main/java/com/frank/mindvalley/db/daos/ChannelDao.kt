@@ -1,6 +1,6 @@
 package com.frank.mindvalley.db.daos
 
-import androidx.lifecycle.LiveData
+
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,7 +13,7 @@ import com.frank.mindvalley.db.entities.CourseDb
 interface ChannelDao {
 
     @Query("SELECT * FROM category")
-    fun getCategories(): LiveData<List<CategoryDb>>
+    fun getCategories(): List<CategoryDb>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertListCategories(categories: List<CategoryDb>)
@@ -22,13 +22,13 @@ interface ChannelDao {
     fun deleteAllCategories()
 
     @Query("SELECT * FROM course")
-    fun getAllCourses(): LiveData<List<CourseDb>>
+    fun getAllCourses(): List<CourseDb>
 
     @Query("SELECT * FROM course WHERE db_course_type = :dbCourseType")
-    fun getCoursesByType(dbCourseType: String): LiveData<List<CourseDb>>
+    fun getCoursesByType(dbCourseType: String): List<CourseDb>
 
     @Query("SELECT * FROM course WHERE chanel_id =:chanelId AND db_course_type = :dbCourseType")
-    fun getCoursesByChannelIdAndType(chanelId: Int, dbCourseType: String): LiveData<List<CourseDb>>
+    fun getCoursesByChannelIdAndType(chanelId: Int, dbCourseType: String): List<CourseDb>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertListCourses(courses: List<CourseDb>)
@@ -40,10 +40,13 @@ interface ChannelDao {
     fun deleteCoursesByType(dbCourseType: String)
 
     @Query("SELECT * FROM chanel")
-    fun getAllChannels(): LiveData<List<ChannelDb>>
+    fun getAllChannels(): List<ChannelDb>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertChannel(channel: ChannelDb)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertChannelAndGet(channel: ChannelDb): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertListChannels(channels: List<ChannelDb>)

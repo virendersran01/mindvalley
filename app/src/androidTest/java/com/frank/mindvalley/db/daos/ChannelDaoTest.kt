@@ -6,7 +6,6 @@ import com.frank.mindvalley.db.MindValleyDBTest
 import com.frank.mindvalley.db.entities.CategoryDb
 import com.frank.mindvalley.db.entities.ChannelDb
 import com.frank.mindvalley.db.entities.CourseDb
-import com.frank.mindvalley.utils.getOrAwaitValue
 import org.hamcrest.core.IsEqual
 import org.hamcrest.core.IsNull.notNullValue
 import org.junit.Assert.assertThat
@@ -22,7 +21,7 @@ class ChannelDaoTest : MindValleyDBTest() {
 
     @Test
     fun getEmptyCategory() {
-        val resultCategories = db.channelDao().getCategories().getOrAwaitValue()
+        val resultCategories = db.channelDao().getCategories()
 
         assertThat(resultCategories, notNullValue())
         val sizeofResult = resultCategories.size
@@ -35,7 +34,7 @@ class ChannelDaoTest : MindValleyDBTest() {
         val categories = listOf<CategoryDb>(category)
         db.channelDao().insertListCategories(categories)
 
-        val resultCategories = db.channelDao().getCategories().getOrAwaitValue()
+        val resultCategories = db.channelDao().getCategories()
 
         assertThat(resultCategories, notNullValue())
         val sizeofResult = resultCategories.size
@@ -54,7 +53,7 @@ class ChannelDaoTest : MindValleyDBTest() {
         val categories = listOf<CategoryDb>(category1, category2)
         db.channelDao().insertListCategories(categories)
 
-        val resultCategories = db.channelDao().getCategories().getOrAwaitValue()
+        val resultCategories = db.channelDao().getCategories()
 
         assertThat(resultCategories, notNullValue())
         val sizeofResult = resultCategories.size
@@ -71,7 +70,7 @@ class ChannelDaoTest : MindValleyDBTest() {
 
         db.channelDao().deleteAllCategories()
 
-        val resultCategories = db.channelDao().getCategories().getOrAwaitValue()
+        val resultCategories = db.channelDao().getCategories()
 
         assertThat(resultCategories, notNullValue())
         val sizeofResult = resultCategories.size
@@ -81,7 +80,7 @@ class ChannelDaoTest : MindValleyDBTest() {
 
     @Test
     fun getEmptyCourse() {
-        val resultCourse = db.channelDao().getAllCourses().getOrAwaitValue()
+        val resultCourse = db.channelDao().getAllCourses()
 
         assertThat(resultCourse, notNullValue())
         val sizeOfResultCourse = resultCourse.size
@@ -90,7 +89,7 @@ class ChannelDaoTest : MindValleyDBTest() {
 
     @Test
     fun getEmptyCourseByType() {
-        val resultCourse = db.channelDao().getCoursesByType("newepisode").getOrAwaitValue()
+        val resultCourse = db.channelDao().getCoursesByType("newepisode")
 
         assertThat(resultCourse, notNullValue())
         val sizeOfResultCourse = resultCourse.size
@@ -112,7 +111,7 @@ class ChannelDaoTest : MindValleyDBTest() {
         val listOfCourses = listOf<CourseDb>(course)
         db.channelDao().insertListCourses(listOfCourses)
 
-        val resultCourses = db.channelDao().getAllCourses().getOrAwaitValue()
+        val resultCourses = db.channelDao().getAllCourses()
 
         assertThat(resultCourses, notNullValue())
         val sizeOfResultCourse = resultCourses.size
@@ -152,7 +151,7 @@ class ChannelDaoTest : MindValleyDBTest() {
         val listOfCourses = listOf<CourseDb>(course)
         db.channelDao().insertListCourses(listOfCourses)
 
-        val resultCourses = db.channelDao().getCoursesByType("series").getOrAwaitValue()
+        val resultCourses = db.channelDao().getCoursesByType("series")
 
         assertThat(resultCourses, notNullValue())
         val sizeOfResultCourse = resultCourses.size
@@ -190,7 +189,7 @@ class ChannelDaoTest : MindValleyDBTest() {
 
         db.channelDao().insertListCourses(list)
 
-        val result = db.channelDao().getAllCourses().getOrAwaitValue()
+        val result = db.channelDao().getAllCourses()
 
         assertThat(result, notNullValue())
         val sizeOfResult = result.size
@@ -242,22 +241,22 @@ class ChannelDaoTest : MindValleyDBTest() {
         val list = listOf<CourseDb>(newEpisode, course, series)
         db.channelDao().insertListCourses(list)
 
-        val allCourse1 = db.channelDao().getAllCourses().getOrAwaitValue()
+        val allCourse1 = db.channelDao().getAllCourses()
         assertThat(allCourse1, notNullValue())
         assertThat(allCourse1.size, IsEqual(3))
 
         db.channelDao().deleteCoursesByType("series")
 
-        val allCourse2 = db.channelDao().getAllCourses().getOrAwaitValue()
+        val allCourse2 = db.channelDao().getAllCourses()
         assertThat(allCourse2, notNullValue())
         assertThat(allCourse2.size, IsEqual(2))
 
         val newEpisodesCourse =
-            db.channelDao().getCoursesByType("new_episodes_type").getOrAwaitValue()
+            db.channelDao().getCoursesByType("new_episodes_type")
         assertThat(newEpisodesCourse, notNullValue())
         assertThat(newEpisodesCourse.size, IsEqual(1))
 
-        val seriesCourse = db.channelDao().getCoursesByType("series").getOrAwaitValue()
+        val seriesCourse = db.channelDao().getCoursesByType("series")
         assertThat(seriesCourse, notNullValue())
         assertThat(seriesCourse.size, IsEqual(0))
 
@@ -309,7 +308,7 @@ class ChannelDaoTest : MindValleyDBTest() {
         val list = listOf<CourseDb>(newEpisode, course, course2, course3)
         db.channelDao().insertListCourses(list)
 
-        val result = db.channelDao().getCoursesByChannelIdAndType(1,"course").getOrAwaitValue()
+        val result = db.channelDao().getCoursesByChannelIdAndType(1,"course")
         assertThat(result, notNullValue())
         assertThat(result.size,IsEqual(2))
 
@@ -317,7 +316,7 @@ class ChannelDaoTest : MindValleyDBTest() {
 
     @Test
     fun getEmptyChannel() {
-        val result = db.channelDao().getAllChannels().getOrAwaitValue()
+        val result = db.channelDao().getAllChannels()
         assertThat(result, notNullValue())
         assertThat(result.size, IsEqual(0))
     }
@@ -333,7 +332,7 @@ class ChannelDaoTest : MindValleyDBTest() {
 
         db.channelDao().insertChannel(channel)
 
-        val result = db.channelDao().getAllChannels().getOrAwaitValue()
+        val result = db.channelDao().getAllChannels()
 
         assertThat(result, notNullValue())
         assertThat(result.size, IsEqual(1))
@@ -365,16 +364,32 @@ class ChannelDaoTest : MindValleyDBTest() {
 
         db.channelDao().insertChannel(channel)
 
-        val result = db.channelDao().getAllChannels().getOrAwaitValue()
+        val result = db.channelDao().getAllChannels()
 
         assertThat(result, notNullValue())
         assertThat(result.size, IsEqual(1))
 
         db.channelDao().deleteAllChannels()
-        val result2 = db.channelDao().getAllChannels().getOrAwaitValue()
+        val result2 = db.channelDao().getAllChannels()
 
         assertThat(result2, notNullValue())
         assertThat(result2.size, IsEqual(0))
+    }
+
+    @Test
+    fun insertChannelAndGet() {
+        val channel = ChannelDb(
+            title = "Mindvalley Mentoring",
+            mediaCount = 98,
+            iconAssetUrl = "https://edgecastcdn.net/80EC13/public/overmind2/asset/11914f01-ba4a-4d68-9c33-efb34c43ed23/channel-icon-mentoring_thumbnail.png",
+            coverAssetUrl = "https://assets.mindvalley.com/api/v1/assets/8fd5837a-539c-4367-b1af-8579a3e3d461.jpg?transform=w_1080"
+        )
+
+        val savedChannelId = db.channelDao().insertChannelAndGet(channel)
+
+        assertThat(savedChannelId, notNullValue())
+        assertThat(savedChannelId,IsEqual(1L))
+
     }
 
 }

@@ -6,6 +6,7 @@ import com.frank.mindvalley.common.Config
 import com.frank.mindvalley.db.MindValleyDB
 import com.frank.mindvalley.db.daos.ChannelDao
 import com.frank.mindvalley.network.ChannelService
+import com.frank.mindvalley.network.NetworkConnectionInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -41,8 +42,20 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideOKHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
+    fun provideOKHttpClient(
+        networkConnectionInterceptor: NetworkConnectionInterceptor,
+        httpLoggingInterceptor: HttpLoggingInterceptor
+    ): OkHttpClient {
+        val builder = OkHttpClient.Builder()
+        builder.interceptors().add(networkConnectionInterceptor)
+        builder.interceptors().add(httpLoggingInterceptor)
+        return builder.build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkConnectionInterceptor(context: Context): NetworkConnectionInterceptor {
+        return NetworkConnectionInterceptor(context)
     }
 
     @Provides
@@ -52,6 +65,7 @@ class AppModule {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return httpLoggingInterceptor
     }
+
 
     @Provides
     @Singleton

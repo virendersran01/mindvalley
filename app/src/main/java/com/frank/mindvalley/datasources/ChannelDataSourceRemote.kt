@@ -1,7 +1,5 @@
 package com.frank.mindvalley.datasources
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import com.frank.mindvalley.models.CategoryModel
 import com.frank.mindvalley.models.ChannelModel
 import com.frank.mindvalley.models.CourseModel

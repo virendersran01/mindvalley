@@ -4,26 +4,20 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.frank.mindvalley.common.COURSE_DB_TYPE
 import com.frank.mindvalley.db.MindValleyDBTest
-import com.frank.mindvalley.db.daos.ChannelDao
 import com.frank.mindvalley.db.entities.ChannelDb
 import com.frank.mindvalley.db.entities.CourseDb
 import com.frank.mindvalley.models.CategoryModel
 import com.frank.mindvalley.models.ChannelModel
 import com.frank.mindvalley.models.CourseModel
-import com.frank.mindvalley.network.ChannelService
-import com.frank.mindvalley.network.response.*
-import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import org.hamcrest.core.IsEqual
+import org.hamcrest.core.IsNull.notNullValue
+import org.hamcrest.core.IsNull.nullValue
+import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito
-import org.mockito.Mockito.mock
-import org.hamcrest.core.IsEqual
-import org.hamcrest.core.IsNull.notNullValue
-import org.hamcrest.core.IsNull.nullValue
 
 @RunWith(AndroidJUnit4::class)
 class ChannelDataSourceLocalTest : MindValleyDBTest() {

@@ -6,16 +6,16 @@ import com.frank.mindvalley.network.ChannelService
 import com.frank.mindvalley.network.response.*
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import org.hamcrest.core.IsEqual
+import org.hamcrest.core.IsNull.notNullValue
+import org.hamcrest.core.IsNull.nullValue
+import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
-import org.hamcrest.core.IsEqual
-import org.hamcrest.core.IsNull.notNullValue
-import org.hamcrest.core.IsNull.nullValue
 
 @RunWith(AndroidJUnit4::class)
 class ChannelDataSourceRemoteTest {

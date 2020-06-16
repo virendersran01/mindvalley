@@ -1,7 +1,6 @@
 package com.frank.mindvalley.ui.channels.components
 
 import android.content.Context
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -12,7 +11,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.frank.mindvalley.R
 import com.frank.mindvalley.models.ChannelModel
 import com.frank.mindvalley.models.CourseModel
-import com.frank.mindvalley.ui.channels.adapters.NewEpisodesAdapter
+import com.frank.mindvalley.ui.channels.adapters.CourseAdapter
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ChannelComponent(context: Context, val channelModel: ChannelModel) : BaseComponent(context) {
@@ -68,7 +67,7 @@ class ChannelComponent(context: Context, val channelModel: ChannelModel) : BaseC
         }
         rcvCourses.addItemDecoration(verticalDividerItemDecoration)
 
-        val adapter = NewEpisodesAdapter()
+        val adapter = CourseAdapter()
         var listCourse: List<CourseModel>?
         if (!channelModel.series.isNullOrEmpty()) {
             adapter.isForSeries = true

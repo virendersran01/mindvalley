@@ -2,7 +2,6 @@ package com.frank.mindvalley.ui.channels.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.ListAdapter
@@ -11,8 +10,8 @@ import com.frank.mindvalley.databinding.AdapterNewEpisodesBinding
 import com.frank.mindvalley.models.CourseModel
 import com.frank.mindvalley.utils.Screen
 
-class NewEpisodesAdapter :
-    ListAdapter<CourseModel, NewEpisodesAdapter.NewEpisodesViewHolder>(CourseDiff()) {
+class CourseAdapter :
+    ListAdapter<CourseModel, CourseAdapter.NewEpisodesViewHolder>(CourseDiff()) {
 
     var isForSeries: Boolean = false
 

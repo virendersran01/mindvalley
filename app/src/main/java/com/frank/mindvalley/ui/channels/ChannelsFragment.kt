@@ -2,7 +2,6 @@ package com.frank.mindvalley.ui.channels
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,7 @@ import com.frank.mindvalley.di.ViewModelFactory
 import com.frank.mindvalley.extensions.mindValleyApplication
 import com.frank.mindvalley.models.ChannelModel
 import com.frank.mindvalley.ui.channels.adapters.CategoryAdapter
-import com.frank.mindvalley.ui.channels.adapters.NewEpisodesAdapter
+import com.frank.mindvalley.ui.channels.adapters.CourseAdapter
 import com.frank.mindvalley.ui.channels.components.ChannelComponent
 import javax.inject.Inject
 
@@ -29,11 +28,11 @@ class ChannelsFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var viewModel: ChannelsViewModel
+     lateinit var viewModel: ChannelsViewModel
 
     private lateinit var dataBinding: FragmentChannelsBinding
 
-    private lateinit var newEpisodesAdapter: NewEpisodesAdapter
+    private lateinit var courseAdapter: CourseAdapter
 
     private lateinit var categoryAdapter: CategoryAdapter
 
@@ -63,7 +62,7 @@ class ChannelsFragment : Fragment() {
         })
 
         viewModel.listNewEpisodes.observe(viewLifecycleOwner, Observer {
-            newEpisodesAdapter.submitList(it)
+            courseAdapter.submitList(it)
         })
 
         viewModel.fetchData()
@@ -89,8 +88,8 @@ class ChannelsFragment : Fragment() {
         dataBinding.rcvNewEpisodes.addItemDecoration(verticalDividerItemDecoration)
 
 
-        newEpisodesAdapter = NewEpisodesAdapter()
-        dataBinding.rcvNewEpisodes.adapter = newEpisodesAdapter
+        courseAdapter = CourseAdapter()
+        dataBinding.rcvNewEpisodes.adapter = courseAdapter
 
     }
 

@@ -13,6 +13,32 @@ class ChannelRepository @Inject constructor(
     private val localDataSource: ChannelDataSourceLocal
 ) {
 
+    suspend fun getNewEpisodesFromDBFirst(): List<CourseModel>? {
+        val result = localDataSource.getNewEpisodes()
+        return if (!result.isNullOrEmpty()) {
+            result
+        } else {
+            remoteDataSource.getNewEpisodes()
+        }
+    }
+
+    suspend fun getChannelsFromDbFirst(): List<ChannelModel>? {
+        val result = localDataSource.getChannels()
+        return if (!result.isNullOrEmpty()) {
+            result
+        } else {
+            remoteDataSource.getChannels()
+        }
+    }
+
+    suspend fun getCategoriesFromDbFirst(): List<CategoryModel>? {
+        val result = localDataSource.getCategories()
+        return if (!result.isNullOrEmpty()) {
+            result
+        } else {
+            remoteDataSource.getCategories()
+        }
+    }
 
     suspend fun getNewEpisodes(): List<CourseModel>? {
         return try {

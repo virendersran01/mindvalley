@@ -2,6 +2,7 @@ package com.frank.mindvalley.ui.channels
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.frank.mindvalley.R
 import com.frank.mindvalley.databinding.FragmentChannelsBinding
 import com.frank.mindvalley.di.ViewModelFactory
@@ -28,7 +30,7 @@ class ChannelsFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-     lateinit var viewModel: ChannelsViewModel
+    lateinit var viewModel: ChannelsViewModel
 
     private lateinit var dataBinding: FragmentChannelsBinding
 
@@ -65,11 +67,23 @@ class ChannelsFragment : Fragment() {
             courseAdapter.submitList(it)
         })
 
+        viewModel.loadingData.observe(viewLifecycleOwner, Observer {
+            Log.e("Frank","Fragment it value $it")
+            dataBinding.swipeContainer.isEnabled = !it
+
+        })
+
+        viewModel.refreshingData.observe(viewLifecycleOwner, Observer {
+            dataBinding.swipeContainer.isRefreshing = it
+        })
+
         viewModel.fetchData()
 
         initNewEpisodesView()
 
         initCategoriesView()
+
+        initRefreshAction()
 
         return dataBinding.root
     }
@@ -116,12 +130,20 @@ class ChannelsFragment : Fragment() {
 
     }
 
-    private fun showListChannels(channels: List<ChannelModel>){
+    private fun showListChannels(channels: List<ChannelModel>) {
         dataBinding.llChannels.removeAllViews()
-        for(channel in channels){
-            val channelComponent = ChannelComponent(requireContext(),channel)
+        for (channel in channels) {
+            val channelComponent = ChannelComponent(requireContext(), channel)
             dataBinding.llChannels.addView(channelComponent.createView())
         }
+    }
+
+    private fun initRefreshAction(){
+        dataBinding.swipeContainer.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener{
+            override fun onRefresh() {
+                viewModel.refresh()
+            }
+        })
     }
 
 }

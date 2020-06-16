@@ -53,7 +53,7 @@ class ChannelDataSourceLocal @Inject constructor(val channelDao: ChannelDao) :
     }
 
     suspend fun saveListChannelToDB(channels: List<ChannelModel>) {
-
+        channelDao.deleteAllChannels()
         for (channelModel in channels) {
             val channelDb = channelModel.toEntity()
             val channelDbId = channelDao.insertChannelAndGet(channelDb).toInt()

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="categoryModel"
+            type="com.frank.mindvalley.models.CategoryModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_category_item">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/roboto_bold"
+            android:maxLines="2"
+            android:paddingStart="13dp"
+            android:paddingTop="11dp"
+            android:paddingEnd="13dp"
+            android:paddingBottom="9dp"
+            android:text="@{categoryModel.name}"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+
+            tools:text="Love Relationship" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/roboto_bold"
+            android:lines="2"
+            android:visibility="invisible"
+            android:paddingStart="13dp"
+            android:paddingTop="11dp"
+            android:paddingEnd="13dp"
+            android:paddingBottom="9dp"
+            android:text="@{categoryModel.name}"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+
+            tools:text="Love Relationship" />
+
+
+
+    </RelativeLayout>
+</layout>
